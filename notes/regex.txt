@@ -1,0 +1,98 @@
+Symbol		Meaning				Example			Matches
+
+
+[abc]	a, b, or c				"b".matches("[abc]")	 a, b, or c
+
+
+[^abc]	Not a, b, or c				"d".matches("[^abc]")	 d, e, etc.
+
+
+[a-z]	Range (a to z)				"m".matches("[a-z]")	 m, n, etc.
+
+
+.	Any single character (except newline)	"a".matches(".")     	a, 1, @, etc.
+
+\d	Digit [0-9]				"5".matches("\\d")	 0–9
+
+\D	Non-digit				"a".matches("\\D")	 a, -, %, etc.
+
+\w	Word character [a-zA-Z0-9_]		"A".matches("\\w")	 A, b, 7, _
+
+\W	Non-word character			"%".matches("\\W")	 %, @, etc.
+
+\s	Whitespace (space, tab, newline)	" ".matches("\\s")	 space, tab
+
+\S	Non-whitespace				"a".matches("\\S")	 a, 1, etc.
+
+
+
+
+======================================================================================
+
+Symbol	Meaning	           	Example	          		Description
+
+*	0 or more	  	"".matches("a*")	   	``, a, aaa, etc.
+
++	1 or more	  	"aaa".matches("a+")	   	a, aa, etc.
+
+?	0 or 1	          	"a".matches("a?")	   	``, a
+
+{n}	Exactly n times	  	"aaa".matches("a{3}")	   	only aaa
+
+{n,}	At least n times	"aaaa".matches("a{3,}")	 	3 or more a
+
+{n,m}	Between n and m times	"aa".matches("a{1,3}")	 	a, aa, aaa
+
+==================================
+
+Examples:
+
+Check if string is all digits
+
+String s = "12345";
+System.out.println(s.matches("\\d+"));  // true
+
+
+Check if string contains only letters
+
+String name = "Alice";
+System.out.println(name.matches("[A-Za-z]+"));  // true
+
+phone number validation:
+
+String date = "2025-09-03";
+System.out.println(date.matches("\\d{4}-\\d{2}-\\d{2}"));  // true
+
+
+Check if string starts with "abc" and ends with digits
+
+String str = "abc123";
+System.out.println(str.matches("abc\\d+"));  // true
+
+
+Check if string contains only whitespace
+
+String str = "   ";
+System.out.println(str.matches("\\s+"));  // true
+
+
+Example 2:
+
+       String input = "Bcdfdf Er98";
+       
+       boolean result = input.matches("[A-Za-z0-9 @#]+"); 
+       
+       System.out.println(result);
+       
+       String mobileNum = "5865741201";
+       
+       boolean isValid = mobileNum.matches("\\d{10}");
+       System.out.println("is valid: "+isValid);
+       
+       String str = "Hello     World";
+       
+       String[] arr =  str.split("\\s+");
+       System.out.println(arr[0]+" "+arr[1]);
+       
+       String password = "Hell@222";
+       password.matches("[a-zA-Z0-9]{5,15}");
