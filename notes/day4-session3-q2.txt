@@ -1,0 +1,70 @@
+import java.util.*;
+
+class Main {
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int txnId = sc.nextInt();
+        double amount = sc.nextDouble();
+        sc.nextLine();
+        String recipientName = sc.nextLine();
+        String merchantName = sc.nextLine();
+        String billType = sc.nextLine();
+        
+        PeerToPeerTransaction ptxn = new PeerToPeerTransaction();
+        ptxn.transactionId = txnId;
+        ptxn.amount = amount;
+        ptxn.recipient = recipientName;
+        String output1 = ptxn.getTransactionInfo();
+        System.out.println(output1);
+        
+        OnlinePurchaseTransaction onlineTxn = new OnlinePurchaseTransaction();
+        onlineTxn.transactionId = txnId;
+        onlineTxn.amount = amount;
+        onlineTxn.merchant = merchantName;
+        String output2 = onlineTxn.getTransactionInfo();
+         System.out.println(output2);
+        
+        BillPaymentTransaction billTxn = new BillPaymentTransaction();
+        billTxn.transactionId = txnId;
+        billTxn.amount=amount;
+        billTxn.billType = billType;
+        String output3 = billTxn.getTransactionInfo();
+        System.out.println(output3);
+        
+        sc.close();
+    }
+}
+
+class Transaction {
+    int transactionId;
+    double amount;
+    
+    String getTransactionInfo() {
+        return transactionId+" "+amount;
+    }
+}
+
+class PeerToPeerTransaction extends Transaction {
+    String recipient;
+    String getTransactionInfo() {
+        System.out.println("Peer-to-Peer Transaction:");
+        return "Transaction ID: "+transactionId+"\nAmount: $"+amount+"\nRecipient: "+recipient+"\n";
+     }
+}
+ 
+class OnlinePurchaseTransaction extends Transaction {
+    String merchant;
+    String getTransactionInfo() {
+        System.out.println("Online Purchase Transaction:");
+        return "Transaction ID: "+transactionId+"\nAmount: $"+amount+"\nMerchant: "+merchant+"\n";
+     }
+}
+
+class BillPaymentTransaction extends Transaction {
+    String billType;
+    String getTransactionInfo() {
+        System.out.println("Bill Payment Transaction:");
+        return "Transaction ID: "+transactionId+"\nAmount: $"+amount+"\nBill Type: "+billType+"\n";
+    }
+}
