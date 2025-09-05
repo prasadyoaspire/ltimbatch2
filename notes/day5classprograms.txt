@@ -1,0 +1,228 @@
+static:
+
+
+class Test {
+    static int k
+    String s;
+    viod m1() {
+        System.out.println("m1 instance method");
+    }
+    
+    static void m2() {
+        System.out.println("m2 static method");
+    }
+}
+
+class Main{
+    
+    public static void main(String[] args) {
+        Test t1 = new Test();
+        t1.m1();
+        
+        Test.m2(); // calling static method with class name
+        
+        Test.k = 20;
+        
+    }
+}
+
+=================================================================================================
+
+super keyword:
+
+class Base {
+  int i ;
+  
+  Base() {
+      System.out.println("super class Zero-Args constructor..");
+  }
+  
+  Base(int v) {
+      System.out.println("super class Int-Args constructor..");
+  }
+
+  
+  void m1() {
+      System.out.println("m1 implemenation inside Base class");
+  }
+}
+
+class Child extends Base {
+    int k;
+    
+    Child() {
+        super(10);
+        System.out.println("sub class constructor..");
+    }
+    
+    void m2() {
+         System.out.println("m2 implemenation inside Child class");
+    }
+}
+
+class Main {
+  public static void main(String[] args) {
+  
+      Child ch1 = new Child();
+  }
+}
+
+--------------------------------
+
+class Person {
+    
+    private String firstName;
+    private String lastName;
+    
+    Person(String firstName,String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    
+}
+class Employee extends Person {
+    private int employeeId;
+    private double salary;
+    
+    Employee(String firstName, String lastName,int employeeId,double salary) {
+        // super();
+        super(firstName,lastName);
+        this.employeeId = employeeId;
+        this.salary =salary;
+    }
+    public int getEmployeeId() {
+        return employeeId;
+    }
+    
+    public double getSalary() {
+        return salary;
+    }
+}
+
+class Main{
+    public static void main(String[] args) {
+        Employee emp1 = new Employee("Raj","Kumar",1111,56000);
+        
+        System.out.println("FirstName: "+emp1.getFirstName());
+        System.out.println("LastName: "+emp1.getLastName());
+        System.out.println("EmployeeId: "+emp1.getEmployeeId());
+        System.out.println("Salary: "+emp1.getSalary());
+    }
+}
+
+=======================================================================================
+
+Overloading:
+
+class SmartPhone {
+    
+    void clickCamera() {
+        System.out.println("click camera ");
+    }
+    
+     void clickCamera(String mode) {
+        System.out.println("click camera with mode : "+mode);
+    }
+}
+
+class Main {
+    
+    public static void main(String[] args) {
+        SmartPhone sphone = new SmartPhone();
+        sphone.clickCamera();
+        sphone.clickCamera("somemode")
+    }
+}
+
+===================================================================================
+
+Overriding:
+
+class A {
+    void m1() {
+        System.out.println("m1 insdie A");
+    }
+}
+class B extends A {
+    
+    @Override
+    void m1() {
+        System.out.println("m1 insdie B");
+    }
+    void m2() {
+        System.out.println("m2 inside B");
+    }
+}
+class Main {
+    public static void main(String[] args) {
+        // A a1 = new A();
+        // a1.m1();
+        
+        // B b1 = new B();
+        // b1.m1();
+        // b1.m2();
+        
+        A a = new B(); // super class ref var refering sub class object
+        
+        a.m1();
+        // a.m2();
+    }
+}
+
+--------------------------------------
+
+import java.util.*;
+
+class Animal {
+   void makeNoise() {
+        System.out.println("Some sound");
+    }
+}
+ 
+class Dog extends Animal{
+    void makeNoise(){
+        System.out.println("Bark");
+    }
+}
+ 
+class Cat extends Animal{
+    void makeNoise() {
+        System.out.println("Meawoo");
+    }
+}
+
+class Main {
+    
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        String name = sc.next();
+        
+        Animal animal = null;
+        
+        if(name.equals("dog")) {
+            animal = new Dog();
+            // animal.makeNoise(); 
+        }
+        else if(name.equals("cat")) {
+            animal = new Cat();
+            // animal.makeNoise();
+        }
+        else {
+            System.out.println("INvalid input");
+        }
+        
+        if(animal != null) {
+            animal.makeNoise();
+        }
+    }
+}
+
+=====================================================
