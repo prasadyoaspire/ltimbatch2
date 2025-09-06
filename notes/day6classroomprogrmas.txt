@@ -1,0 +1,98 @@
+import java.util.*;
+class Main {
+    
+    public static void main(String[] args) {
+        System.out.println("Main Starts...");
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        
+        try {
+            printSquareOfNumber(num);
+        }
+        catch(ArithmeticException e) {
+             System.out.println(e.getMessage());
+        }
+        finally {
+            System.out.println("finally always executing");
+        }
+        
+        sc.close();
+        System.out.println("Main ends");
+    }
+    
+    static void printSquareOfNumber(int num) throws ArithmeticException {
+        
+          if(num == 0) {
+                ArithmeticException ex = new ArithmeticException("invalid number");
+                throw ex;
+            }
+        System.out.println("Square = "+(num*num));
+    }
+}
+
+===============================================
+import java.util.*;
+class Main {
+    
+    public static void main(String[] args) {
+        System.out.println("Main Starts...");
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        
+        try {
+            printSquareOfNumber(num);
+        }
+        catch(ClassNotFoundException e) {
+            //  System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
+        sc.close();
+        System.out.println("Main ends");
+    }
+    
+    static void printSquareOfNumber(int num) throws ClassNotFoundException {
+        
+          if(num == 0) {
+                ClassNotFoundException ex = new ClassNotFoundException("invalid number");
+                throw ex;
+            }
+        System.out.println("Square = "+(num*num));
+    }
+}
+
+================================================
+
+import java.util.*;
+
+//undefined exception 
+class AgeLimitException extends Exception {
+    
+    AgeLimitException(String msg) {
+        super(msg);
+    }
+}
+
+class Main {
+    public static void main(String[] str) {
+        Scanner sc = new Scanner(System.in);
+        int inputAge = sc.nextInt();
+        try {
+              validateAge(inputAge);
+        }
+        catch(AgeLimitException e) {
+            // System.out.println("Invalid age");
+            //System.out.println(e); //output: AgeLimitException
+             System.out.println(e.getMessage()); 
+        }
+        sc.close();
+    }
+    
+    static void validateAge(int age) throws AgeLimitException {
+        if(age<18) {
+            AgeLimitException ex = new AgeLimitException("Invalid age for vote!");
+            throw ex;
+        }
+        System.out.println("Eligible for vote");
+    }
+}
