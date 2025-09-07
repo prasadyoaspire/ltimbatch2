@@ -1,0 +1,31 @@
+Q1) Rearrange by Parity
+
+Method Signature:
+
+public static int[] rearrangeByParity(int[] array);
+
+Description:
+Rearrange the array so that all even numbers appear before all odd numbers.
+Maintain the relative order of even and odd numbers.
+
+================================================================================
+Q2) Move Zeros to End
+
+Method Signature:
+
+public static int[] moveZerosToEnd(int[] array);
+
+Description:
+Move all the zero elements to the end of the array while maintaining the relative order of the non-zero elements.
+
+====================================================================================
+q3) 4. Separate Duplicates and Uniques
+
+Method Signature:
+
+public static int[] rearrangeByUniqueness(int[] array);
+
+Description:
+Rearrange the array so that all unique elements come first, followed by duplicate elements.
+Preserve the original order of both unique and duplicate elements.
+=============================================================================================
