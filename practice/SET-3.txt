@@ -1,0 +1,36 @@
+Payment Gateway Interface
+
+You are building a system that processes different types of payments.
+Create an interface named PaymentGateway with a method void processPayment(double amount).
+Implement this interface for two payment types: CreditCardPayment and PayPalPayment.
+Take user input for the payment amount and simulate processing the payment using both methods.
+
+Input format :
+The input consists of a double which represents the amount.
+Output format :
+The output displays the simulated processing of payment using both drone CreditCard and PayPal. The amount will be rounded to two decimal places.
+
+Refer to the sample output for formatting specifications.
+
+Sample test cases :
+
+Input 1 :
+500
+
+Output 1 :
+Processing credit card payment of:  $500.00
+Credit Card payment processed successfully!
+
+Processing Paypal payment of:  $500.00
+Paypal payment processed successfully!
+
+===============================================================================================
+
+Question2:
+
+Notification System Interface
+
+Create an interface named NotificationService with a method sendNotification().
+Implement this interface for two types of notifications: EmailNotification and SMSNotification.
+Ask the user to input a message and simulate sending it using both methods.
+
