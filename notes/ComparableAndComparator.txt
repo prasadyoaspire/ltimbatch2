@@ -1,0 +1,138 @@
+Comparable Demo:
+
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        
+        Product p1 = new Product(10,"IPhoneX",59000);
+        Product p2 = new Product(20,"IPhoneZ",69000);
+        Product p3 = new Product(30,"IPhoneX",49000);
+        Product p4 = new Product(40,"SamsungF30",29000);
+        
+        ArrayList<Product> myProducts = new ArrayList<>();
+        myProducts.add(p1);
+        myProducts.add(p2);
+        myProducts.add(p3);
+        myProducts.add(p4);
+        
+        for(Product p: myProducts) {
+            System.out.println(p);
+        }
+        
+        Collections.sort(myProducts);
+        
+        System.out.println("After Sorting: ");
+        
+        for(Product p: myProducts) {
+            System.out.println(p);
+        }
+    }
+}
+
+class Product implements Comparable<Product> {
+    private int id;
+    private String name;
+    private double price;
+    Product(int id,String name, double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+    
+    @Override
+    public String toString() {
+        return "Id: "+id+", Name: "+name+", Price: "+price;
+    }
+    
+    @Override
+    public int compareTo(Product obj) {
+    //   int result =  (int)(this.price - obj.price);
+    //   int result = Double.compare(this.price,obj.price); //sort by price
+      int result = this.name.compareTo(obj.name); //sort by name
+      return result;
+    }
+}
+
+==================================================================
+
+Comparator Demo :
+
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        
+        Product p1 = new Product(10,"IPhoneX",59000);
+        Product p2 = new Product(20,"IPhoneZ",69000);
+        Product p3 = new Product(30,"IPhoneX",49000);
+        Product p4 = new Product(40,"SamsungF30",29000);
+        
+        ArrayList<Product> myProducts = new ArrayList<>();
+        myProducts.add(p1);
+        myProducts.add(p2);
+        myProducts.add(p3);
+        myProducts.add(p4);
+        
+        for(Product p: myProducts) {
+            System.out.println(p);
+        }
+        
+        Collections.sort(myProducts, new NameComparator());
+        
+        System.out.println("Sort By Name: ");
+        for(Product p: myProducts) {
+            System.out.println(p);
+        }
+        
+        Collections.sort(myProducts, new PriceComparator());
+        
+        System.out.println("Sort By Price: ");
+        for(Product p: myProducts) {
+            System.out.println(p);
+        }
+    }
+}
+
+class Product {
+    private int id;
+    private String name;
+    private double price;
+    Product(int id,String name, double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    public double getPrice() {
+        return price;
+    }
+    
+    @Override
+    public String toString() {
+        return "Id: "+id+", Name: "+name+", Price: "+price;
+    }
+}
+
+class NameComparator implements Comparator<Product> {
+    @Override
+    public int compare(Product p1,Product p2) {
+        int result = p1.getName().compareTo(p2.getName());
+        return result;
+    }
+}
+
+class PriceComparator implements Comparator<Product> {
+    @Override
+    public int compare(Product p1,Product p2) {
+        int result = Double.compare(p1.getPrice(),p2.getPrice());
+        return result;
+    }
+}
+
+
