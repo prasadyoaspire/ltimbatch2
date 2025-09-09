@@ -1,0 +1,76 @@
+import java.util.*;
+
+class Main {
+    
+    public static void main(String[] args) {
+        
+        Map<String,LinkedHashMap<String,Integer>> studentsMap = new LinkedHashMap<>();
+        
+        Scanner sc = new Scanner(System.in);
+        
+        while(sc.hasNextLine()) {
+            
+            String input = sc.nextLine();
+            
+            String[] inputArr = input.split(" ");
+            
+            if(inputArr.length !=4) {
+                System.out.println("Invalid input. Please enter 'action student_name subject_name [grade]'.");
+                continue;
+            }
+            
+            String action = inputArr[0]; 
+            String name = inputArr[1];
+            String subject = inputArr[2];
+            String gradeStr = inputArr[3];
+            
+            if(!gradeStr.matches("\\d+")) { 
+                System.out.println("Invalid grade. Please enter an integer between 0 and 100.");
+                continue;
+            }
+            
+             int grade = Integer.parseInt(gradeStr);
+             
+             if(!(grade >= 0 && grade <=100)) { 
+                System.out.println("Grade should be between 0 and 100.");
+                continue;
+              }
+            
+            switch(action) {
+                
+                case "add": //if key is not exiting, create new grade nao
+                            LinkedHashMap<String,Integer> gradeMap = new LinkedHashMap<>();
+                            studentsMap.putIfAbsent(name,gradeMap);
+                            
+                            //if key is already existing, get the existing grade map
+                            LinkedHashMap<String,Integer>  existingGradeMap = studentsMap.get(name);
+                            existingGradeMap.put(subject,grade);
+                            System.out.println("Added: "+name+" in "+subject+" with grade "+grade);
+                       
+                    break;
+                    
+                case "update":
+                            if(studentsMap.containsKey(name)) {
+                                
+                                LinkedHashMap<String,Integer> exitingGradeMap = studentsMap.get(name);
+                           
+                                 if(exitingGradeMap.containsKey(subject)) {
+                                     exitingGradeMap.put(subject,grade);
+                                     System.out.println("Updated: "+name+" in "+subject+" with grade "+grade);
+                                 }
+                                 else {
+                                   System.out.println("Subject "+subject+" not found for student "+name+"."); 
+                                 }
+                            }
+				break;
+                    
+                default :
+                    System.out.println("Invalid action");
+            }
+            
+        }
+        
+        
+        sc.close();
+    }
+ }

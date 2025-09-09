@@ -1,0 +1,71 @@
+import java.util.*;
+
+class MapDemo {
+    
+    public static void main(String[] args) {
+    
+        //HashMap<String,String> map = new HashMap<>(); //unordered and unsorted
+        
+        //LinkedHashMap<String,String> map = new LinkedHashMap<>(); //ordered maintains insertion order
+        
+        TreeMap<String,String> map = new TreeMap<>(); // sorted by keys
+        
+        map.put("India", "New Delhi");
+        map.put("UK", "London");
+        map.put("Russia", "Moscow");
+        map.put("US", "Washington DC"); 
+        System.out.println(map);
+        
+        //get value from keys
+        String key = "Russiafgfgf";
+        String value = map.get(key); // if key is exisitng in map its reuturn the value else returns null
+        
+        if(value != null) {
+            System.out.println("Capital: "+value);
+        }
+        else {
+            System.out.println("No Key Found");
+        }
+        
+        System.out.println("Get All keys");
+        
+        Set<String> allKeys = map.keySet();
+        
+        for(String k : allKeys) {
+            System.out.println(k);
+        }
+        
+        System.out.println("Get All Values");
+        for(String k : allKeys) {
+            String v = map.get(k);
+            System.out.println(v);
+        }
+        
+    }
+}
+
+===============================================
+
+import java.util.*;
+
+class MapDemo {
+    
+    public static void main(String[] args) {
+    
+        HashMap<String,String> map = new HashMap<>();
+        map.put("India", "New Delhi");
+        map.put("UK", "London");
+        map.put("Russia", "Moscow");
+        map.put("US", "Washington DC"); 
+        
+        System.out.println(map); // toString
+        
+        Set<Map.Entry<String,String>> set = map.entrySet();
+        
+        for(Map.Entry<String,String> ele : set) {
+            String k = ele.getKey();
+            String v = ele.getValue();
+            System.out.println("key: "+ k+" value: "+v);
+        }
+    }
+}
