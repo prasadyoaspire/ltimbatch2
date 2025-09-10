@@ -1,0 +1,222 @@
+import java.util.*;
+
+class Book {
+    private String title;
+    private String author;
+    private String genre;
+  
+    Book(String title,String author,String genre) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+    }
+    
+    void setTitle(String title) {
+        this.title = title;
+    }
+    String getTitle() {
+        return title;
+    }
+    void setAuthor(String author) {
+        this.author = author;
+    }
+    String getAuthor() {
+        return author;
+    }
+    void setGenre(String genre) {
+        this.genre = genre;
+    }
+    String getGenre() {
+        return genre;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        HashSet<Book> books = new HashSet<>();
+        
+        for(int i=0;i<n;i++) {
+            
+            String title = sc.nextLine();
+            String author = sc.nextLine();
+            String genre = sc.nextLine();
+            
+            //create Book object 
+            Book b1 = new Book(title,author,genre);
+            
+            //iterator hashset for unique title
+            boolean flag = false;
+            for(Book b : books) {
+                if(title.equals(b.getTitle())) {
+                    flag = true; // if book title already exists
+                    break;
+                }
+            }
+            
+            if(flag==false) {
+                books.add(b1); //add book to hashset
+                System.out.println("Book added");
+            }
+        }
+        
+        System.out.println("All Books:");
+        
+        for(Book b : books) {
+            System.out.println(b.getTitle()+" "+b.getAuthor()+" "+b.getGenre());
+        }
+            
+        //update genre
+            
+        String bookTitleToUpdate = sc.nextLine();
+        String newGenre = sc.nextLine();
+        
+        boolean flag1 = false;
+        for(Book b : books) {
+            if(bookTitleToUpdate.equals(b.getTitle())) {
+                flag1 = true; // if book title already exists
+                b.setGenre(newGenre);  // update book genre
+                System.out.println("Genre updated");
+                break;
+            }
+        }
+            
+        if(flag1==false) {
+            System.out.println("title Not found");
+        }
+              
+        System.out.println("After Updating:");
+        
+        for(Book b : books) {
+            System.out.println(b.getTitle()+" "+b.getAuthor()+" "+b.getGenre());
+        }
+        
+        String bookTitleToRemove = sc.nextLine();
+        
+        boolean flag2 = false;
+        for(Book b : books) {
+            if(bookTitleToRemove.equals(b.getTitle())) {
+                flag2 = true; 
+                books.remove(b); // remove book
+                System.out.println("Book Removed");
+                break;
+            }
+        }
+            
+        if(flag1==false) {
+            System.out.println("Book Not found");
+        }
+        
+    }
+}
+
+==========================================================================
+
+version 2:
+
+import java.util.*;
+
+class Book {
+    private String title;
+    private String author;
+    private String genre;
+  
+    Book(String title,String author,String genre) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+    }
+    
+    void setTitle(String title) {
+        this.title = title;
+    }
+    String getTitle() {
+        return title;
+    }
+    void setAuthor(String author) {
+        this.author = author;
+    }
+    String getAuthor() {
+        return author;
+    }
+    void setGenre(String genre) {
+        this.genre = genre;
+    }
+    String getGenre() {
+        return genre;
+    }
+}
+
+class CatalogService {
+    
+    HashSet<Book> books = new HashSet<>();
+    
+    void addBook(String title,String author,String genre) {
+        Book book = isExisting(title);
+        if(book==null) {
+            Book b = new Book(title,author,genre);
+            books.add(b);
+        }
+    }
+    
+    void updateBook(String title, String genre) {
+        Book book = isExisting(title);
+        if(book!=null) {
+            book.setGenre(genre);
+        }
+        else {
+            System.out.println("Book Not found with title");
+        }
+    }
+        
+    void removeBook(String title) {
+        Book book = isExisting(title);
+        if(book!=null) {
+            books.remove(book);
+        }
+        else {
+            System.out.println("Book Not found with title");
+        }
+    }
+    
+    Book isExisting(String title) {
+      
+        for(Book b: books) {
+            if(title.equals(b.getTitle())) {
+               return b;
+            }
+        }
+        return null;
+    }
+    
+    void displayAll() {
+        for(Book b : books) {
+            System.out.println(b.getTitle()+" "+b.getAuthor()+" "+b.getGenre());
+        }
+    }
+    
+}
+
+class Main {
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        
+        CatalogService service = new CatalogService();
+      
+        for(int i=0;i<n;i++) {
+            String title = sc.nextLine();
+            String author = sc.nextLine();
+            String genre = sc.nextLine();
+            service.addBook(title,author,genre);
+        }
+        
+        service.displayAll();
+    }
+}
+
