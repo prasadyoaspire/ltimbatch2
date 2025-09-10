@@ -32,8 +32,7 @@ class Book {
 }
 
 class Main {
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) {        
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         sc.nextLine();
@@ -207,16 +206,35 @@ class Main {
         int n = sc.nextInt();
         sc.nextLine();
         
-        CatalogService service = new CatalogService();
+        CatalogService service = new CatalogService(); // memory allocation for instance variables
       
         for(int i=0;i<n;i++) {
             String title = sc.nextLine();
             String author = sc.nextLine();
             String genre = sc.nextLine();
+
             service.addBook(title,author,genre);
         }
         
         service.displayAll();
+
+        String bookTitelForUpdate  = sc.nextLine();
+        String newGenre = sc.nextLine();
+
+       service.updateBook(bookTitelForUpdate,newGenre);
+
+       System.out.println("After update:");
+
+       service.displayAll();
+
+       String bookTitelForRemove  = sc.nextLine();
+
+       service.removeBook(bookTitelForRemove);
+
+       System.out.println("After remove:");
+
+       service.displayAll();
+
     }
 }
 
