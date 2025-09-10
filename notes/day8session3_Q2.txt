@@ -1,0 +1,73 @@
+
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+
+		LinkedHashMap<String, Integer> bookInventory = new LinkedHashMap<>();
+
+		int MAX_QUANTITY = 1000;
+
+		while (scanner.hasNextLine()) {
+
+			String input = scanner.nextLine();
+
+			if (input.trim().isEmpty()) {
+				break;
+			}
+
+			String[] parts = input.split("\\s+");
+
+			if (parts.length != 3) {
+				System.out.println("Invalid input. Please enter action, book title, and quantity.");
+				continue;
+			}
+
+			String action = parts[0].toLowerCase();
+			String bookTitle = parts[1];
+			String qtyStr = parts[2];
+
+			if (!qtyStr.matches("-?\\d+")) {
+				System.out.println("Invalid quantity. Please enter a non-negative integer.");
+				continue;
+			}
+
+			int quantity = Integer.parseInt(qtyStr);
+
+			if (quantity >= 0 && quantity <= MAX_QUANTITY) {
+
+				switch (action) {
+				case "add":
+					int existingQty = bookInventory.getOrDefault(bookTitle, 0); // returns 0 if not found else return
+																				// the value
+					int newQty = existingQty + quantity;
+					bookInventory.put(bookTitle, newQty);
+					break;
+				case "remove":
+					if (bookInventory.containsKey(bookTitle)) {
+						int updatedQty = bookInventory.get(bookTitle) - quantity;
+						if (updatedQty == 0) {
+							bookInventory.remove(bookTitle);
+						} else {
+							bookInventory.put(bookTitle, updatedQty);
+						}
+					}
+					break;
+				default:
+					System.out.println("Invalid action. Use 'add' or 'remove'.");
+				}
+			} else {
+				System.out.println("Quantity should be between 0 and 1000.");
+			}
+		}
+
+		System.out.println("Final Book List:");
+		for (Map.Entry<String, Integer> entry : bookInventory.entrySet()) {
+			System.out.println("Book: " + entry.getKey() + ", Quantity: " + entry.getValue());
+		}
+		scanner.close();
+	}
+}
