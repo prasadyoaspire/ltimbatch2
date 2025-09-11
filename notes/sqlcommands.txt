@@ -1,0 +1,112 @@
+# You are using MYSQL
+create table product_tbl(
+id int,
+name varchar(20),
+price decimal(10,2),
+category varchar(20),
+primary key(id)
+);
+
+#INSERT
+insert into product_tbl values(10,'SamsungF20',56000,'mobile');
+insert into product_tbl values(20,'Dell Vestro',126000,'laptop');
+insert into product_tbl values(30,'IphoneSE',26000,'mobile');
+insert into product_tbl values(40,'ScanDisk',4000.00,'pendrive');
+
+#SELECT
+select * from product_tbl;
+select name,price from product_tbl;
+
+select * from product_tbl where category = 'mobile';
+select * from product_tbl where price > 50000;
+
+select * from product_tbl order by price;  #sort the product in ASC of price
+select * from product_tbl order by price desc;  #sort the product in desc of price
+
+select count(*) as NoOfProducts from product_tbl;
+select sum(price) as TotalCost from product_tbl;
+select max(price) as Maximum_Price from product_tbl;
+select min(price) as Minimum_Price from product_tbl;
+
+select * from product_tbl where price between 20000 and 50000;
+
+#UPDATE
+update product_tbl set price=4500*1.05 where id = 40;
+update product_tbl set price=25500,name='Ipohn5SE' where id = 30;
+
+select * from product_tbl;
+
+#delete
+delete from product_tbl where id=40;
+
+select * from product_tbl;
+
+===================================================================================
+
+
+# You are using MYSQL
+create table item_tbl(
+item_id int,
+item_name varchar(20),
+item_price decimal(10,2),
+mfd date,
+expiry_date date, 
+category varchar(20),
+primary key(item_id)
+);
+
+-- insert into item_tbl values(1,'rice',70.50,'2025-09-11', '2025-12-31', 'food');
+-- insert into item_tbl values(2,'Lux soap',80.50,'2025-09-11', '2025-12-31', 'soap');
+-- insert into item_tbl values(3,'wheat',50.50,'2025-09-11', '2025-12-31', 'food');
+-- insert into item_tbl values(4,'abc',60.50,'2025-09-11', '2025-12-31', 'oil');
+
+-- select * from item_tbl;
+
+create table dept_tbl (
+dept_id int,
+dept_name varchar(20) unique,
+primary key(dept_id)
+);
+
+create table emp_tbl (
+emp_id int,
+emp_name varchar(30) not null, 
+email varchar(30) unique,
+mobile varchar(10) not null,
+dept_no int,
+foreign key(dept_no) references dept_tbl(dept_id),
+primary key(emp_id)
+);
+
+insert into dept_tbl values(10, 'IT');
+insert into dept_tbl values(20, 'HR');
+insert into dept_tbl values(30, 'Sales');
+
+insert into emp_tbl values(111,'abc','abc@tmail.com','9638574210',10);
+insert into emp_tbl values(222,'xyz','xyz@tmail.com','9638574210',20);
+insert into emp_tbl values(333,'pqr','pqr@tmail.com','9638574210',10);
+insert into emp_tbl values(444,'lmn','lmn@tmail.com','9638574210',30);
+insert into emp_tbl values(555,'def','def@tmail.com','9638574210',10);
+
+select * from dept_tbl;
+
+select * from emp_tbl;
+
+-- insert into emp_tbl values(666,'def','defdd@tmail.com','9638574210',90);
+
+-- select e.emp_name,d.dept_name from emp_tbl e join  dept_tbl d where e.dept_no = d.dept_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
