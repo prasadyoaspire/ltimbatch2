@@ -1,0 +1,169 @@
+
+Q1) Student Marks Filter and Sort 
+
+Problem Statement:
+
+You are given a list of student marks in an ArrayList<Integer>.
+
+Your task is to: 
+
+	Read in student marks from the user. 
+	Remove all marks less than 40 (fail marks). 
+	Sort the remaining marks in ascending order.
+
+Display: 
+	The total number of passing students 
+	The highest and lowest mark 
+	The full sorted list
+
+Input Format:
+ 
+First line: 
+Integer n (number of marks) 
+
+Next n lines: 
+One integer each (student mark)
+
+Sample Input:
+ 6 
+35
+85 
+37 
+42 
+19 
+90
+
+Expected Output :
+
+Filtered and Sorted Marks: 
+42 
+55 
+85 
+90 
+
+Total Passing Students: 4 
+
+Highest Mark: 90 
+
+Lowest Mark: 42
+
+
+Constraints Class name: Main
+
+Method name: processMarks (ArrayList<Integer> marks) 
+
+Filter Fail Marks, Sort the Remaining Marks, Display the Cleaned List, determine the highest and lowest marks among passers. 
+
+==========================================================================================================================
+
+Q2) Unique PIN Collector
+
+Problem Statement:
+
+A company is collecting unique 4-digit PINs from users for access authentication.
+
+You are to write a program that:
+
+Accepts n 4-digit PINs from the user.
+
+Stores only unique PINs using HashSet<Integer>.
+
+Skips duplicate entries and prints: "Duplicate PIN ignored: 1234"
+
+If the PIN is not a 4-digit number, throw a custom exception Invalid PinException, and print
+"Invalid PIN entered: 99 (PIN must be 4 digits)"
+
+At the end, display all the unique PINs collected.
+
+Sample Input:
+
+6
+1234
+4321
+1234
+99
+6789
+9876
+
+Expected Output:
+
+Duplicate PIN ignored: 1234
+
+Invalid PIN entered: 99 (PIN must be 4 digits)
+
+Unique PINs Collected:
+1234
+4321
+6789
+9876
+
+Constraints:
+
+Use HashSet<Integer> for storing unique PINs.
+PIN must be between 1000 and 9999 (inclusive).
+If a PIN is invalid, throw a custom exception:
+Invalid PinException extends Exception
+Catch the custom exception in the main logic and display the required message.
+Handle duplicates using HashSet.add(), and print a custom message if duplicate is detected.
+Use enhanced for loop to print all stored PINs in the end.
+
+===================================================================================================================
+
+Q3) Unique Book Catalog
+
+Problem Statement:
+Create a program that maintains a catalog of unique books using a HashSet. 
+Each Book has the following attributes
+int bookid
+String title
+String author
+
+You must:
+Allow the user to add a list of books.
+Prevent duplicate books from being added. Two books are considered duplicates if their bookid is the same
+Display all the unique books at the end.
+
+Sample Input:
+
+Enter number of books: 4
+101
+Java Basics
+Arun
+102
+Spring Boot
+Priya
+
+Expected Output:
+
+Book added successfully.
+Book added successfully.
+Duplicate book found with ID: 101
+Book added successfully.
+
+Unique Books in Catalog:
+
+ID: 101 | Title: Java Basics | Author: Arun
+ID: 102 | Title: Spring Boot | Author: Priya
+ID: 103 | Title: Angular | Author: Ravi
+
+Constraints & Signatures:
+
+Class: Book
+Attributes: int bookid, String title, String author
+
+Method:
+  getters and setters
+
+Class: BookCatalog
+Attributes: HashSet<Book> catalog;
+
+Method:
+	1. public static void addBook(Book book)
+
+	Store the book in HashSet.
+	No two books should have the same bookid.
+	Validate bookid must be positive (>0), else print: "Invalid Book ID' and skip.
+
+	2. public static void displayAll() 
+
+===============================================================================================================

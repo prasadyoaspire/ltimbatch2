@@ -1,0 +1,166 @@
+import java.util.*;
+import java.sql.*;
+
+class Main {
+    
+    static final String URL = "jdbc:mysql://localhost/ri_db";
+    static final String USERNAME = "test";
+    static final String PASSWORD = "test123";
+    
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        int choice = sc.nextInt();
+        
+        switch(choice) {
+            case 1 :
+                //insert operation 
+                insert(sc);
+                displayAll();
+                break;
+            case 2:
+                //update opeartion
+                update(sc);
+                displayAll();
+                break;
+            case 3: 
+                //delete operation 
+                delete(sc);
+                displayAll();
+                break;
+            case 4:
+                //dispaly operation 
+                displayAll();
+                break;
+            default:
+               System.out.println("Invalid option");
+        }
+        sc.close();
+    }
+    
+    static Connection createDBConnection() {
+        Connection con = null;
+        try {
+           con = DriverManager.getConnection(URL,USERNAME,PASSWORD); 
+        }
+        catch(SQLException e) {
+            System.out.println("Connection Error!");
+        }
+        return con;
+    }
+    
+    static void insert(Scanner sc) {
+        int loanId = sc.nextInt();
+        sc.nextLine();
+        String name = sc.nextLine();
+        double amount = sc.nextDouble();
+        double rate = sc.nextDouble();
+        int term = sc.nextInt();
+        
+        String sql = "insert into loans values(?,?,?,?,?)";
+        Connection con = createDBConnection();
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,loanId);
+            ps.setString(2,name);
+            ps.setDouble(3,amount);
+            ps.setDouble(4,rate);
+            ps.setInt(5,term);
+            
+            ps.executeUpdate();
+            System.out.println("Loan added successfully.");
+        }
+        catch(SQLException e) {
+            
+        }
+        finally {
+            try {
+                if(con!=null)
+                con.close();
+            }
+            catch(SQLException e) {
+                
+            }
+        }
+    }
+    static void update(Scanner sc) {
+        int loanId = sc.nextInt();
+        double newInterestRate = sc.nextDouble();
+        String sql = "update loans set interestRate = ? where loanId = ?";
+        Connection con = createDBConnection();
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1,newInterestRate);
+            ps.setInt(2,loanId);
+            
+            ps.executeUpdate();
+            System.out.println("Loan updated successfully.");
+        }
+        catch(SQLException e) {
+            
+        }
+        finally {
+            try {
+                if(con!=null)
+                con.close();
+            }
+            catch(SQLException e) {
+                
+            }
+        }
+    }
+    static void delete(Scanner sc) {
+        
+        int loanId = sc.nextInt();
+        String sql = "delete from loans where loanId = ?";
+        
+        Connection con = createDBConnection();
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,loanId);
+            
+            ps.executeUpdate();
+            System.out.println("Loan deleted successfully.");
+        }
+        catch(SQLException e) {
+            
+        }
+        finally {
+            try {
+                if(con!=null)
+                con.close();
+            }
+            catch(SQLException e) {
+                
+            }
+        }
+    }
+     public static void displayAll() {
+        String sql ="select * from loans";
+        Connection con = createDBConnection();
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()) {
+                int loanId = rs.getInt(1);
+                String borrowerName = rs.getString(2);
+                double loanAmount = rs.getDouble("loanAmount");
+                double interestRate = rs.getDouble(4);
+                int loanTerm = rs.getInt(5);
+                System.out.println("Loan ID:"+loanId+", Borrower Name:"+borrowerName+", Loan Amount:"+loanAmount+", Interest Rate:"+interestRate+"%, Loan Term:"+loanTerm+" years");
+            }
+        }
+        catch(SQLException e) {
+            
+        }
+        finally {
+            try {
+                if(con!=null)
+                con.close();
+            }
+            catch(SQLException e) {
+                
+            }
+        }
+    }
+}
