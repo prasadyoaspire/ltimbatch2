@@ -56,33 +56,41 @@ class Main {
         double amount = sc.nextDouble();
         double rate = sc.nextDouble();
         int term = sc.nextInt();
-        
-        String sql = "insert into loans values(?,?,?,?,?)";
-        Connection con = createDBConnection();
-        try{
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1,loanId);
-            ps.setString(2,name);
-            ps.setDouble(3,amount);
-            ps.setDouble(4,rate);
-            ps.setInt(5,term);
+
+         if(amount < 0) {
+             //System.out.println("Invalid amount");
+
+             //throw new NegativeAmountException("invlaid amount");
+         }
+         else {         
+        	String sql = "insert into loans values(?,?,?,?,?)";
+        	Connection con = createDBConnection();
+        	try{
+            		PreparedStatement ps = con.prepareStatement(sql);
+            		ps.setInt(1,loanId);
+            		ps.setString(2,name);
+            		ps.setDouble(3,amount);
+            		ps.setDouble(4,rate);
+            		ps.setInt(5,term);
             
-            ps.executeUpdate();
-            System.out.println("Loan added successfully.");
-        }
-        catch(SQLException e) {
+            		ps.executeUpdate();
+            		System.out.println("Loan added successfully.");
+        	}
+        	catch(SQLException e) {
             
-        }
-        finally {
-            try {
-                if(con!=null)
-                con.close();
-            }
-            catch(SQLException e) {
+        	}
+        	finally {
+            		try {
+                		if(con!=null)
+                		con.close();
+            	}
+            	catch(SQLException e) {
                 
-            }
+            	}
         }
-    }
+
+     }
+   }
     static void update(Scanner sc) {
         int loanId = sc.nextInt();
         double newInterestRate = sc.nextDouble();
