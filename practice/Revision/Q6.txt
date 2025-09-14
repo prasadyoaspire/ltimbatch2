@@ -1,0 +1,119 @@
+Q3) Unique Book Catalog
+
+Problem Statement:
+Create a program that maintains a catalog of unique books using a HashSet. 
+Each Book has the following attributes
+int bookid
+String title
+String author
+
+You must:
+Allow the user to add a list of books.
+Prevent duplicate books from being added. Two books are considered duplicates if their bookid is the same
+Display all the unique books at the end.
+
+---------------------------------------------------------------------------------------------
+Sample Input:
+
+4
+101
+Java Basics
+Arun
+102
+Spring Boot
+Priya
+101
+Java DS
+Vibhav
+103
+Sql
+Kiran
+
+Expected Output:
+
+Book added successfully.
+Book added successfully.
+Duplicate book found with ID: 101
+Book added successfully.
+
+Unique Books in Catalog:
+
+ID: 101 | Title: Java Basics | Author: Arun
+ID: 102 | Title: Spring Boot | Author: Priya
+ID: 103 | Title: Angular | Author: Ravi
+
+--------------------------------------------------------------------------------------------------
+
+import java.util.*;
+
+class Book {
+    int id;
+    String title;
+    String author;
+    
+    Book(int id,String title,String author) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+    }
+    public int getId() {
+        return id;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public String getAuthor() {
+        return author;
+    }
+    public String toString() {
+        return "ID: "+id+" | Title: "+title+" | Author: "+author;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        
+       //HashSet to store Books
+        HashSet<Book> books = new HashSet(); 
+        
+        Scanner sc = new Scanner(System.in);
+        
+        //Read number of elements to store
+        int n = Integer.parseInt(sc.nextLine());
+        
+        for(int i=0;i<n;i++) {
+            
+            //read each book details
+            int id = Integer.parseInt(sc.nextLine());
+            String title = sc.nextLine();
+            String author = sc.nextLine();
+            
+            //create new book object
+            Book newBook = new Book(id,title,author);
+            
+            //before adding new book object, check the set, book is already existing with this id or not
+            boolean duplicate = false;
+                
+            for(Book eb : books) {
+                if (eb.getId() == id) {
+                    System.out.println("Duplicate book found with ID: " + id);
+                    duplicate = true;
+                    break;
+                }
+            }
+                
+            //if book is not existing in the set, then only add newBook to set.    
+            if(duplicate == false) {
+                books.add(newBook);
+                System.out.println("Book added successfully.");
+            }
+        }
+        
+        //Display
+        System.out.println("Unique Books in Catalog:");
+
+        for(Book b : books) {
+            System.out.println(b);
+        }
+    }
+}
