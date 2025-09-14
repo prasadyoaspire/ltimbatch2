@@ -1,0 +1,47 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        
+       //HashSet to store students marks
+        HashSet<Integer> marks = new HashSet(); // unordered and unsorted
+        
+        Scanner sc = new Scanner(System.in);
+        
+        //Read number of elements (marks) to store
+        int n = sc.nextInt();
+        
+        for(int i=0;i<n;i++) {
+            
+            //read each student marks
+            int m = sc.nextInt();
+            
+            //store it inside hashset
+            marks.add(m);
+        }
+        
+        //Display Before Sorting
+        for(int i: marks) {
+            System.out.println(i);
+        }
+        
+        //How to sort elements in HashSet ? 
+        
+        //option 1: convert HashSet to ArrayList and sort this ArrayList
+        
+        // Convert HashSet to ArrayList
+        List<Integer> sortedList = new ArrayList<>(marks); //passing HashSet object to the ArrayList constructor
+
+        // Sort in ascending order
+        Collections.sort(sortedList);
+        
+        //option 2: Use TreeSet -TreeSet will automatically sort the elements        
+        // TreeSet<Integer> sortedSet = new TreeSet<>(marks); //passing HashSet object to the TreeSet constructor
+        
+        //Display After Sorting
+        System.out.println("Sorted Marks: ");
+        for(int i: sortedList) {
+            System.out.println(i);
+        } 
+    }
+}
