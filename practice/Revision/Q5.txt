@@ -45,3 +45,43 @@ class Main {
         } 
     }
 }
+
+----------------------------------------------------------------------
+
+Sample Input:
+
+4
+35
+85 
+42
+95
+
+Sample Output:
+
+35
+85
+42
+95
+Sorted Marks: 
+35
+42
+85
+95
+
+======================================================================================================
+
+Question 2) 
+
+create a class Item with attributes:
+
+itemId - int
+itemName - String 
+itemPrice - double
+
+your task is:
+
+  1. add Item objects to the HashSet
+
+  2. Sort Item object by price in ascending order
+
+  3. display the sorted set
