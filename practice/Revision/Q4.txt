@@ -1,0 +1,150 @@
+Problem Statement:
+
+You are creating an event scheduling application that allows users to input upcoming events and their scheduled start times. The app should sort and display the events in order of their start time.
+
+Input format:
+
+For each event:
+
+Enter the event name (String).
+
+Enter the event start time in 24-hour format (Integer between 0 and 23).
+
+To end input, type "Done".
+
+Output format:
+
+Display the sorted list of events in ascending order of start times.
+
+Each line should contain: <Event Name> - <Start Time>
+
+----------------------------------------------------------------------------------
+
+import java.util.*;
+import java.sql.*;
+
+//Event class
+class Event {
+    String name;
+    int startTime;
+    
+    Event(String name,int startTime) {
+        this.name = name;
+        this.startTime = startTime;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    public int getStartTime() {
+        return startTime;
+    }
+    public String toString() {
+	return "Event Name: "+name+", Start Time: "+startTime;
+    }
+
+}
+
+//Main class
+class Main {
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        //create arralist to store event objects
+        ArrayList<Event> eventList = new ArrayList<>();
+        
+        //read the inputs until user enters "Completed" text
+        while(true) {
+            String name = sc.nextLine();
+            if(name.equals("Done")) {
+                break;
+            }
+            else {
+                 int startTime = Integer.parseInt(sc.nextLine());
+                 
+                // condition check : startTime should be between 0 to 23 hours 
+                if(startTime >=0 && startTime <=23) {
+                    
+                    //create event Object
+                    Event event = new Event(name,startTime);
+                
+                    //add to event list
+                    eventList.add(event);
+                }
+            }
+        }
+        
+        //sort the Objects in eventList using comparator
+        Collections.sort(eventList,new StartTimeComarator());
+        
+        //display the result
+        System.out.println("Events by Importance:");
+        for(Event e:eventList) {
+            // System.out.println("Event Name: "+e.getName()+", Start Time: "+e.getStartTime());
+            System.out.println(e);
+        }
+        
+        sc.close();
+    }
+}
+
+//Compartor class to sort the objects in ascending order of startTime.
+class StartTimeComarator implements Comparator<Event> {
+
+    public int compare(Event e1, Event e2) {
+        return Integer.compare(e1.getStartTime(), e2.getStartTime()); // for ascending order
+        // return Integer.compare(e2.getStartTime(), e1.getStartTime());  // for descending order
+    }
+} 
+
+----------------------------------------------------------------------------------------
+sample input:
+
+Team Meeting
+14
+Doctor Appointment
+9
+Project Presentation
+11
+Lunch with Client
+12
+Done
+
+Sample output:
+
+Events by Importance:
+Event Name: Doctor Appointment, Start Time: 9
+Event Name: Project Presentation, Start Time: 11
+Event Name: Lunch with Client, Start Time: 12
+Event Name: Team Meeting, Start Time: 14
+
+=======================================================================================
+Question2 : for practice
+
+Patient Check-in System using ArrayList
+
+Problem Statement:
+
+Design a patient check-in system for a clinic that stores patients based on their urgency level. The urgency level determines how quickly the patient should be seen by a doctor.
+
+Input format:
+
+For each patient:
+
+Enter the patient name (String).
+
+Enter the urgency level (Integer between 1 and 5, where 1 is most urgent).
+
+Stop input when "Exit" is entered.
+
+Output format:
+
+Display patients sorted by urgency level in ascending order.
+
+Format: <Patient Name> - Urgency Level: <level>
+
+Your task is:
+
+same as above code.
+
