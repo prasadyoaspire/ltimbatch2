@@ -1,0 +1,61 @@
+day 10_session2_maven:
+
+1. Which of the following command can tell the version of maven?
+
+ Ans: mvn --version
+
+2. Which of the following phase in maven life cycle takes the compiled code and package it in its distributable format, such as a JAR?
+
+Ans: package
+
+3. Which of the following refers to the version of the project?
+
+Ans : ${version}
+
+4. Which of the following is not type of Maven Repository?
+
+ Ans: dependency
+
+5.  Which of the following command removes the target directory with all the build data before starting the build process?
+
+  Ans: mvn clean
+
+6. What is the use of mvn package command in Maven?
+
+  Ans: Builds the project and packages the resulting JAR file into the target directory
+
+7. Which of the following commands builds the project described by your Maven POM file and installs the resulting artifact (JAR) into your local Maven repository?
+
+Ans: mvn install
+
+8. What is the sequence in which maven looks for the resources?
+
+Ans: Local -> Remote - Maven Central
+
+9. Which of the following is not a maven goal?
+
+Ans: debug
+
+10. What is a dependency in Maven?
+
+Ans: A library or external package that is required for the project
+
+11. What is a Maven plugin?
+
+Ans: A component that adds specific functionality to the Maven build process
+
+12. What is the default repository in Maven?
+
+Ans: Maven Central
+
+13. Which command is used to run a single test in Maven?
+
+Ans: mvn test -Dtest=TestClassName
+
+14. What is Maven used for in software development?
+
+Ans: Build automation
+
+15. Which phase of the Maven build lifecycle generates the project documentation?
+
+Ans: site
