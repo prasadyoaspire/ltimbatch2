@@ -1,0 +1,65 @@
+day 10 - session 3 - kcqs
+======================================================================================
+
+KCQs:
+=======================================================================================
+
+1. Which is incorrect value for ‘type’ attribute for list tag?
+
+ Ans: Round
+
+2. How can you make a bulleted list?
+
+ Ans : ul
+
+3. What is the use of ‘alt’ attribute in image tag?
+
+ Ans: It provides an alternate text for an image, if user cannot view the image.
+
+4. In HTML document the tags
+
+  Ans: can be written in both uppercase or lowercase
+
+5. To create HTML document you require a
+
+  Ans: Just a notepad can be used
+
+6. Which of the option below will increase the space between text and its border in an uniform way.
+
+  Ans: cellpadding
+
+7. Dynamic web page
+
+  Ans: generates on demand by a program or a request from browser
+
+8. Which attribute of the frameset tag creates two horizontal frames?
+
+  Ans: rows
+
+9. Which attribute of <ol> is used to start the numbering from other than 1?
+
+  Ans: Start
+
+10. Tags and text that are not directly displayed on the page are written in _____ section.
+
+  Ans: <head>
+
+11. Choose the correct HTML tag to make a text italic
+
+  Ans: <li>
+
+12. To create a combo box (drop down box) which tag will you use?
+
+  Ans: <select>
+
+13. Which element is used for short quote?
+
+ Ans: <q>
+
+14. An image-map is an image with clickable areas, so which tag we can use for defining an image-map?
+
+  Ans: map
+
+15. How can you open a link in new browser window?
+
+ Ans:  < a href = “url” target = “_blank”>
