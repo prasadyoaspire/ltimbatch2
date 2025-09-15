@@ -1,0 +1,233 @@
+Q1) 
+
+Problem Statement: Update Value in an Integer List
+
+Problem Description:
+
+You are given a list of integers stored in an ArrayList<Integer>. 
+
+Your task is to write a Java program that:
+
+Displays the initial list.
+
+enter a value that exists in the list.
+
+enter a new value to replace the old one.
+
+Updates the first occurrence of the existing value with the new value.
+
+Displays the updated list.
+
+Sample input:
+5
+10
+20
+30
+40
+50
+40
+400
+
+Sample output:
+
+Original List: 
+[10, 20, 30, 40, 50]
+Updated List: 
+[10, 20, 30, 400, 50]
+
+------------------------------------------------------------------------------
+
+ import java.util.*;
+
+class Main {
+    
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        ArrayList<Integer> numbers = new ArrayList<>();
+        int n = sc.nextInt();
+        
+        for(int i=0;i<n;i++) {
+            
+            int element = sc.nextInt();
+            
+            numbers.add(element);
+        }
+        
+        //enter existing value
+        int oldValue = sc.nextInt();
+
+        //enter new value to update
+        int newValue = sc.nextInt();
+        
+        System.out.println("Original List: ");
+        System.out.println(numbers);
+        
+         // Check if value exists
+        if (!numbers.contains(oldValue)) {
+            System.out.println("Value not found in the ArrayList.");
+        }
+        else {
+            // Find the index of the old value and update it
+            int index = numbers.indexOf(oldValue);
+            numbers.set(index, newValue);
+            
+            System.out.println("Updated List: ");
+            System.out.println(numbers);
+        }
+        
+    }
+}
+
+==================================================================================
+
+Q2) Update All Occurrences of a Value in a List
+
+Problem Description:
+
+You are given a list of integers stored in an ArrayList<Integer>. 
+
+Your task is to write a Java program that:
+
+Displays the initial list.
+
+enter a value that may occur multiple times in the list.
+
+enter a new value to replace the old one.
+
+Replaces all occurrences of the old value with the new value.
+
+Displays the updated list.
+
+Sample Input 1: 
+
+5
+10
+20
+30
+20
+50
+20  --> value to update
+99  --> new value
+
+
+Sample output 1:
+
+Original ArrayList: 
+[10, 20, 30, 20, 50, 20]
+
+Updated ArrayList: 
+[10, 99, 30, 99, 50, 99]
+
+---------------------------
+
+Sample Input 2:
+
+5
+10
+20
+30
+40
+50
+60 --> value to update
+600 --> new value
+
+Sample output 2:
+
+Original ArrayList: 
+[10, 20, 30, 40, 50]
+
+Value not found in the ArrayList.
+
+-------------------------------------------------------------
+
+import java.util.*;
+
+class Main {
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        ArrayList<Integer> numbers = new ArrayList<>();
+        int n = sc.nextInt();
+        
+        for(int i=0;i<n;i++) {
+            int element = sc.nextInt();
+            numbers.add(element);
+        }
+        
+        int oldValue = sc.nextInt();
+        int newValue = sc.nextInt();
+        
+        System.out.println("Original List: ");
+        System.out.println(numbers);
+        
+         // Check if value exists
+        if (!numbers.contains(oldValue)) {
+            System.out.println("Value not found in the ArrayList.");
+        }
+        else {
+           // Replace all occurrences
+            for (int i = 0; i < numbers.size(); i++) {
+                if (numbers.get(i) == oldValue) {
+                    numbers.set(i, newValue);
+                }
+            }
+            System.out.println("Updated ArrayList: ");
+            System.out.println(numbers);
+        }
+    }
+}
+
+
+====================================================================
+
+Q3) Problem Statement: Update Value in an String List
+
+===================================================================
+
+Q4) Update All Occurrences of a String in a List
+
+  Sample Input-1:
+
+  5
+  apple
+  banana
+  cherry
+  banana
+  mango
+  banana --> value to update
+  orange --> new value
+
+  Sample output-1:
+
+  Original ArrayList: 
+  [apple, banana, cherry, banana, mango]
+  
+  Updated ArrayList: 
+  [apple, orange, cherry, orange, mango]
+
+----------------------------------------
+ 
+  Sample Input-2:
+
+  5
+  apple
+  banana
+  cherry
+  banana
+  mango
+  orange --> value to update
+  pineapple --> new value
+
+  Sample output-3:
+
+  Original ArrayList: 
+  [apple, banana, cherry, banana, mango]
+  
+  Updated ArrayList: 
+  orange not found in the ArrayList.
+
+
+====================================================================
