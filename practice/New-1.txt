@@ -125,13 +125,21 @@ Display all the unique books at the end.
 
 Sample Input:
 
-Enter number of books: 4
+Sample Input:
+
+4
 101
 Java Basics
 Arun
 102
 Spring Boot
 Priya
+101
+Java DS
+Vibhav
+103
+Sql
+Kiran
 
 Expected Output:
 
@@ -167,3 +175,4 @@ Method:
 	2. public static void displayAll() 
 
 ===============================================================================================================
+
